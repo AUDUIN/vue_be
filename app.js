@@ -9,6 +9,18 @@ var session = require('express-session');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var proxy = require('http-proxy-middleware');   //引⼊入跨域代理理nodejs模块 
+
+
+app.use(  //配置跨域代理理的模块   
+     '/test',     
+     proxy({ 
+         target: 'https://www.yestae.com',
+          changeOrigin: true 
+        })  
+     ); 
+
+
 var app = express();
 
 app.use(cors());
